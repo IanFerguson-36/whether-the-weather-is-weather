@@ -31,7 +31,17 @@
     <main class="container-fluid">
       <div class="row">
         <aside class="col-3" id="develop">
-          <section>My search bar will go here.</section>
+          <section>
+            <form id="search-form">
+              <div class="form-group">
+                <label for="exampleInputPassword1">Search</label>
+                <input type="text" class="form-control" id="city-search" />
+              </div>
+
+              <button type="submit" class="btn btn-primary">Search</button>
+            </form>
+          </section>
+
           <section>My cities in local storage will go here</section>
         </aside>
         <div class="col-9" id="develop">
