@@ -2,6 +2,10 @@ var searchForm = $("#search-form");
 var citySearchEl = $("#city-search");
 var currentCity = $("#currently-selected");
 var tempElement = $("<p>");
+var humidityElement = $("<p>");
+var windspeedElement = $("<p>");
+var uvElement = $("<p>");
+var history = JSON.parse(localStorage.getItem("history") || []);
 
 searchForm.on("submit", function (event) {
   event.preventDefault();
@@ -29,5 +33,15 @@ searchForm.on("submit", function (event) {
       // Displays Current Temperature
       tempElement.text("Temperature " + data.main.temp);
       currentCity.append(tempElement);
+
+      //   Displays Humidity
+
+      // Displays Windspeed
+
+      // Displays UV Index
     });
 });
+
+// inside click event
+// history.push(current city)
+// localstorage.setitem("history, json.stringify(histroy)))
