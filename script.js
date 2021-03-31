@@ -5,7 +5,9 @@ var tempElement = $("<p>");
 var humidityElement = $("<p>");
 var windspeedElement = $("<p>");
 var uvElement = $("<p>");
-var history = JSON.parse(localStorage.getItem("history") || []);
+var humidityElement = $("<p>");
+var windspeedElement = $("<p>");
+var uvElement = $("<p>");
 
 searchForm.on("submit", function (event) {
   event.preventDefault();
@@ -35,13 +37,31 @@ searchForm.on("submit", function (event) {
       currentCity.append(tempElement);
 
       //   Displays Humidity
+      humidityElement.text("Humidity " + data.main.humidity);
+      currentCity.append(humidityElement);
 
       // Displays Windspeed
-
+      windspeedElement.text("Windspeed " + data.wind.speed);
+      currentCity.append(windspeedElement);
       // Displays UV Index
+      var lat = data.coord.lat;
+      var lon = data.coord.lon;
     });
 });
+function uvIndex() {
+  var uvURL =
+    "http://api.openweathermap.org/data/2.5/uvi?lat=" +
+    lat +
+    "&lon=" +
+    lon +
+    "&appid" +
+    apiKey;
 
-// inside click event
-// history.push(current city)
-// localstorage.setitem("history, json.stringify(histroy)))
+  fetch(uvURL)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      console.log(data);
+    });
+}
