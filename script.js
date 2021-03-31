@@ -14,10 +14,9 @@ searchForm.on("submit", function (event) {
   event.preventDefault();
   var citySearch = citySearchEl.val();
   console.log(citySearch);
-  var currentDate = moment().format("MMM Do YY");
 
   var apiUrl =
-    "http://api.openweathermap.org/data/2.5/weather?q=" +
+    "https://api.openweathermap.org/data/2.5/weather?q=" +
     citySearch +
     "&appid=" +
     apiKey +
@@ -31,7 +30,7 @@ searchForm.on("submit", function (event) {
       console.log(data);
 
       // Displays Current city
-      currentCity.text(data.name + currentDate);
+      currentCity.text(data.name);
 
       // Displays Current Temperature
       tempElement.text("Temperature " + data.main.temp);
