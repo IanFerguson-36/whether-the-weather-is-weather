@@ -8,12 +8,12 @@ var uvElement = $("<p>");
 var humidityElement = $("<p>");
 var windspeedElement = $("<p>");
 var uvElement = $("<p>");
+var apiKey = "2810f23e0f72acb2e940047beb55e002";
 
 searchForm.on("submit", function (event) {
   event.preventDefault();
   var citySearch = citySearchEl.val();
   console.log(citySearch);
-  var apiKey = "2810f23e0f72acb2e940047beb55e002";
 
   var apiUrl =
     "http://api.openweathermap.org/data/2.5/weather?q=" +
@@ -46,22 +46,25 @@ searchForm.on("submit", function (event) {
       // Displays UV Index
       var lat = data.coord.lat;
       var lon = data.coord.lon;
+      uvIndex(lat, lon);
     });
 });
-function uvIndex() {
+function uvIndex(lat, lon) {
   var uvURL =
     "http://api.openweathermap.org/data/2.5/uvi?lat=" +
     lat +
     "&lon=" +
     lon +
-    "&appid" +
+    "&appid=" +
     apiKey;
-
+  console.log(uvURL);
   fetch(uvURL)
     .then(function (response) {
       return response.json();
     })
     .then(function (data) {
       console.log(data);
+      uvElement.text("UV Index " + data.value);
+      currentCity.append(uvElement);
     });
 }
